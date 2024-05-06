@@ -1,4 +1,4 @@
-package com.io.darkfoxv.application.demo;
+package com.io.darkfoxv.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.io.darkfoxv.application.demo;
+package com.io.darkfoxv.application;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
