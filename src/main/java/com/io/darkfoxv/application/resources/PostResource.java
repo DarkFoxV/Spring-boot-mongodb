@@ -3,6 +3,7 @@ package com.io.darkfoxv.application.resources;
 import com.io.darkfoxv.application.domain.Post;
 import com.io.darkfoxv.application.domain.User;
 import com.io.darkfoxv.application.dto.UserDTO;
+import com.io.darkfoxv.application.resources.util.URL;
 import com.io.darkfoxv.application.services.PostService;
 import com.io.darkfoxv.application.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,11 @@ public class PostResource {
     @GetMapping(value = "/{id}")
     public ResponseEntity<Post> findById(@PathVariable String id) {
         Post post = postService.findById(id);
+        return ResponseEntity.ok().body(post);
+    }
+    @GetMapping(value = "/titlesearch")
+    public ResponseEntity<List<Post>> findByTitle(@RequestParam(value = "text", defaultValue = "") String title) {
+        List<Post> post = postService.findByTitle(URL.decodeParam(title));
         return ResponseEntity.ok().body(post);
     }
 }
