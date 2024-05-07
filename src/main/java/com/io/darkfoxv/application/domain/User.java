@@ -54,7 +54,10 @@ public class User implements Serializable {
         return posts;
     }
 
-
+    public void setPosts(List<Post> posts) {
+        this.posts.clear();
+        this.posts.addAll(posts);
+    }
 
     @Override
     public boolean equals(Object o) {

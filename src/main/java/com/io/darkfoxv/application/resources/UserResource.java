@@ -1,5 +1,6 @@
 package com.io.darkfoxv.application.resources;
 
+import com.io.darkfoxv.application.domain.Post;
 import com.io.darkfoxv.application.domain.User;
 import com.io.darkfoxv.application.dto.UserDTO;
 import com.io.darkfoxv.application.services.UserService;
@@ -21,7 +22,7 @@ public class UserResource {
     @GetMapping
     public ResponseEntity<List<UserDTO>> findAll() {
         List<User> users = userService.findAll();
-        List<UserDTO> usersDTO = users.stream().map(x -> new UserDTO(x)).toList();
+        List<UserDTO> usersDTO = users.stream().map(UserDTO::new).toList();
         return ResponseEntity.ok().body(usersDTO);
 
     }
@@ -54,4 +55,11 @@ public class UserResource {
         userService.update(user);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User user = userService.findById(id);
+        return ResponseEntity.ok().body(user.getPosts());
+    }
+
 }
