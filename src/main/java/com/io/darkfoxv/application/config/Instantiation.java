@@ -2,6 +2,7 @@ package com.io.darkfoxv.application.config;
 
 import com.io.darkfoxv.application.domain.Post;
 import com.io.darkfoxv.application.domain.User;
+import com.io.darkfoxv.application.dto.AuthorDTO;
 import com.io.darkfoxv.application.repository.PostRepository;
 import com.io.darkfoxv.application.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class Instantiation implements CommandLineRunner {
     private UserRepository userRepository;
     @Autowired
     private PostRepository postRepository;
+
     @Override
     public void run(String... args) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -28,9 +30,9 @@ public class Instantiation implements CommandLineRunner {
         User maria = new User(null, "Maria Brown", "maria@gmail.com");
         User alex = new User(null, "Alex Green", "alex@gmail.com");
         User bob = new User(null, "Bob Grey", "bob@gmail.com");
-        userRepository.saveAll(Arrays.asList(alex, bob,maria));
-        Post post1 = new Post(null,sdf.parse("21-03-2018"),"Partiu viagem","Vou viajar para São Paulo. Abralos!", maria);
-        Post post2 = new Post(null,sdf.parse("23-03-2018"),"Bom Dia","Acordei feliz hoje", maria);
+        userRepository.saveAll(Arrays.asList(alex, bob, maria));
+        Post post1 = new Post(null, sdf.parse("21-03-2018"), "Partiu viagem", "Vou viajar para São Paulo. Abralos!", new AuthorDTO(maria));
+        Post post2 = new Post(null, sdf.parse("23-03-2018"), "Bom Dia", "Acordei feliz hoje", new AuthorDTO(maria));
         postRepository.saveAll(Arrays.asList(post1, post2));
 
     }
