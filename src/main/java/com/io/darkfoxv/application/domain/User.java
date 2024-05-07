@@ -18,7 +18,7 @@ public class User implements Serializable {
     private String email;
 
     @DBRef(lazy = true)
-    private final List<Post> posts = new ArrayList<>();
+    private List<Post> posts = new ArrayList<>();
 
     public User(String id, String name, String email) {
         this.id = id;
@@ -55,8 +55,7 @@ public class User implements Serializable {
     }
 
     public void setPosts(List<Post> posts) {
-        this.posts.clear();
-        this.posts.addAll(posts);
+        this.posts = posts;
     }
 
     @Override
